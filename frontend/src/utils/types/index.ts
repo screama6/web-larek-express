@@ -13,6 +13,7 @@ export interface IProduct {
 export interface IFile {
     fileName: string;
     originalName: string;
+    _id: string;
 }
 
 export interface IBasket {
