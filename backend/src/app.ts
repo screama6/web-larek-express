@@ -14,8 +14,9 @@ import { errorLogger, requestLogger } from './middlewares/logger';
 
 const cors = require('cors');
 
+const { DB_ADDRESS } = process.env;
 const app = express();
-mongoose.connect('mongodb://127.0.0.1:27017/weblarek');
+mongoose.connect(`${DB_ADDRESS}`);
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

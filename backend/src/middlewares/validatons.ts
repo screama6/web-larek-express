@@ -10,7 +10,7 @@ export interface IOrder {
 }
 
 export const orderShema = Joi.object({
-  items: Joi.array().required().min(2).max(30)
+  items: Joi.array().required().min(1).max(30)
     .unique(),
   total: Joi.number().required(),
   payment: Joi.string().required().valid('card', 'online'),
@@ -30,11 +30,4 @@ export const productSchema = Joi.object({
   category: Joi.string().required(),
   description: Joi.string(),
   price: Joi.number().default(null),
-});
-
-export const allProductShema = Joi.object({
-  items: Joi.array().items(
-    Joi.object({ productSchema }),
-  ),
-  total: Joi.number().required(),
 });

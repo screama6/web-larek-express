@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { Request, Response, NextFunction } from 'express';
-
 import { faker } from '@faker-js/faker';
+
+import { Request, Response, NextFunction } from 'express';
 
 import { celebrate, Segments } from 'celebrate';
 

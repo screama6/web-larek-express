@@ -4,39 +4,24 @@ import { celebrate, Segments } from 'celebrate';
 
 import Product from '../models/product';
 
-import { allProductShema, productSchema } from '../middlewares/validatons';
-
-const newProduct = {
-  description: 'Будет стоять над душой и не давать прокрастинировать.',
-  image: {
-    fileName: '/images/Asterisk_2.png',
-    originalName: 'Asterisk_2.png',
-  },
-  title: 'Мамка-таймер',
-  category: 'софт-скил',
-  price: null,
-};
+import { productSchema } from '../middlewares/validatons';
 
 export const productRouteValidator = celebrate({
   [Segments.BODY]: productSchema,
-});
-
-export const allProductRouteValidator = celebrate({
-  [Segments.BODY]: allProductShema,
 });
 
 export const getAllProducts = (_req: Request, res: Response, next: NextFunction) => Product.find({})
   .then((items) => (res.send({ items, total: items.length })))
   .catch((err) => next(err));
 
-export const createProduct = (_req: Request, res: Response, next: NextFunction) => {
+export const createProduct = (req: Request, res: Response, next: NextFunction) => {
   const {
     title,
     image,
     category,
     description,
     price,
-  } = newProduct;
+  } = req.body;
   return Product.create({
     title,
     image,
@@ -44,6 +29,6 @@ export const createProduct = (_req: Request, res: Response, next: NextFunction) 
     description,
     price,
   })
-    .then(() => res.status(200).send())
+    .then(() => res.status(201).send())
     .catch((err) => next(err));
 };
