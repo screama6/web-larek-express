@@ -13,7 +13,7 @@ export const orderRouteValidator = celebrate({
 export const createOrder = (req: Request, res: Response, next: NextFunction) => {
   try {
     const order: IOrder = req.body;
-    res.status(200).send({ id: faker.string.uuid(), total: order.total });
+    res.status(201).send({ id: faker.string.uuid(), total: order.total });
   } catch (error) {
     next(error);
   }
