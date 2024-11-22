@@ -1,26 +1,27 @@
 import { model, Schema } from 'mongoose';
+
+interface Iimage {
+  fileName: string;
+  originalName: string;
+}
+
 export interface IProduct {
   title: string;
   image: Iimage;
   category: string;
   description: string;
   price: number;
-};
-
-interface Iimage {
-  fileName: string;
-  originalName: string
-};
+}
 
 const imageSchema = new Schema<Iimage>({
-  fileName:{
+  fileName: {
     type: String,
     required: true,
   },
   originalName: {
     type: String,
     required: true,
-  }
+  },
 });
 
 const productSchema = new Schema<IProduct>({
@@ -29,21 +30,20 @@ const productSchema = new Schema<IProduct>({
     minlength: 2,
     maxlength: 30,
     required: true,
-    unique: true
+    unique: true,
   },
   image: imageSchema,
   category: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
   },
   price: {
     type: Number,
-    default: null
-  }
+    default: null,
+  },
 });
-
 
 export default model<IProduct>('product', productSchema);
