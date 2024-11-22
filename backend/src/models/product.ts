@@ -32,7 +32,10 @@ const productSchema = new Schema<IProduct>({
     required: true,
     unique: true,
   },
-  image: imageSchema,
+  image: {
+    imageSchema,
+    required: true,
+  },
   category: {
     type: String,
     required: true,

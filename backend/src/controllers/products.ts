@@ -44,6 +44,6 @@ export const createProduct = (_req: Request, res: Response, next: NextFunction) 
     description,
     price,
   })
-    .then((product) => res.send(product))
+    .then(() => res.status(200))
     .catch((err) => next(err));
 };
